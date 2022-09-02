@@ -1,0 +1,14 @@
+name: 'Get-Namespace'
+description: 'prepare namespace for a delivery'
+author: 'Shift Software factory'
+inputs:
+  branch: 
+    required: true
+    description: 'current branch'
+    type: string
+outputs:
+  namespace:
+    description: 'target to deploy for acceptance env, feature or main acceptance'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

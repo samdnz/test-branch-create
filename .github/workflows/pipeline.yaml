@@ -1,0 +1,26 @@
+name: 'Continuous delivery'
+on: 
+  push:
+    branches:
+      - feature/*
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    outputs:
+      namespace: ${{steps.prepare-namespace.outputs.namespace}}
+    steps:
+      - name: prepare-namespace
+        uses: samdnz/test-branch-create/actions/prepare-namespace@main
+        with:
+          branch: acceptance
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: prepare-namespace
+        uses: samdnz/test-branch-create/actions/prepare-namespace@main
+        with:
+          branch: acceptance/hello
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
